@@ -3,7 +3,7 @@ def madlib():
     adj1 = input("Adjective: ")
     noun1 = input("Abstract noun: ")
     verb1 = input("Verb (present tense): ")
-    oun2 = input("Noun: ")
+    noun2 = input("Noun: ")
     adj2 = input("Adjective: ")
     verb2 = input("Verb ending in -ing: ")
     noun3 = input("Abstract noun: ")
