@@ -1,52 +1,32 @@
 import random
-from words import words
 import string
-
-
-def valid_words(words):
-    word=random.choices(words)
+from words import words
+def valid_word(words):
+    word = random.choice(words).upper()
     while "-" in word or " " in word:
-        word=random.choices(words)
-
+        word = random.choice(words).upper()
     return word
-
-
 def hangman():
-    word = valid_words(words)
-    word_letters=set(word) #set of valid words 
-    alphabet=set(string.ascii_uppercase)
-    used_letters=set() #what the user has guessed 
-    while(len(word_letters)>0):
-        #letters used 
-        print("you have used these letters: ", ' '.join(used_letters))
-        #what current word is W-RD
-        word_list=[letter if letter in used_letters else "-" for letter in word]
-        print("Current Word: ", " ".join(word_list))
+    word = valid_word(words)
+    word_letters = set(word)          # letters in the word
+    alphabet = set(string.ascii_uppercase)
+    used_letters = set()
+    while len(word_letters) > 0:
+        print("You have used these letters: ", " ".join(used_letters))
 
-
-        user_letter=input("Guess a letter: ").upper()
-        if user_letter in alphabet-used_letters:
+        word_list = [
+            letter if letter in used_letters else "-"
+            for letter in word
+        ]
+        print("Current word: ", " ".join(word_list))
+        user_letter = input("Guess a letter: ").upper()
+        if user_letter in alphabet - used_letters:
             used_letters.add(user_letter)
             if user_letter in word_letters:
                 word_letters.remove(user_letter)
         elif user_letter in used_letters:
-            print("You have already used that character. Please try again.")
-
+            print("You have already used that letter.")
         else:
-            print("Invalid character. Please try again")
-
-
-
+            print("Invalid character.")
+    print(f"Yay! You guessed the word {word}!")
 hangman()
-
-
-
-
-
-
-
-
-
-
-
-
